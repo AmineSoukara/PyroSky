@@ -37,6 +37,8 @@ class SendInvoice:
         extended_media: "types.InputMedia" = None,
         reply_to_message_id: int = None,
         message_thread_id: int = None,
+        message_effect_id: int = None,
+        protect_content: bool = None,
         quote_text: str = None,
         quote_entities: List["types.MessageEntity"] = None,
     ):
@@ -87,6 +89,12 @@ class SendInvoice:
             message_thread_id (``int``, *optional*):
                 Unique identifier for the target message thread (topic) of the forum.
                 for forum supergroups only.
+
+            message_effect_id (``int`` ``64-bit``, *optional*):
+                Unique identifier of the message effect to be added to the message; for private chats only.
+                
+            protect_content (``bool``, *optional*):
+                Protects the contents of the sent message from forwarding and saving.
 
             quote_text (``str``, *optional*):
                 Text to quote.
@@ -145,6 +153,8 @@ class SendInvoice:
                 ),
                 random_id=self.rnd_id(),
                 reply_to=reply_to,
+                effect=message_effect_id,
+                noforwards=protect_content,
                 message=""
             )
         )
