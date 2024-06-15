@@ -210,7 +210,9 @@ class SendInvoice:
             peer=await self.resolve_peer(chat_id),
             media=media,
             silent=disable_notification or None,
-            reply_to=utils.get_reply_to(client=self,
+            reply_to = await utils.get_reply_to(
+                client=self,
+                chat_id=chat_id,
                 reply_to_message_id=reply_to_message_id,
                 message_thread_id=message_thread_id
             ),
