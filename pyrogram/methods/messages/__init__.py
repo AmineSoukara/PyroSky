@@ -71,6 +71,7 @@ from .stop_poll import StopPoll
 from .stream_media import StreamMedia
 from .vote_poll import VotePoll
 from .refund_star_payment import RefundStarPayment
+from .create_invoice_link import CreateInvoiceLink
 
 class Messages(
     DeleteMessages,
@@ -126,6 +127,7 @@ class Messages(
     GetDiscussionRepliesCount,
     StreamMedia,
     GetCustomEmojiStickers,
-    RefundStarPayment
+    RefundStarPayment,
+    CreateInvoiceLink
 ):
     pass
