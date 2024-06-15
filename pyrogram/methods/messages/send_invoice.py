@@ -27,6 +27,7 @@ class SendInvoice:
         title: str,
         description: str,
         currency: str,
+        payload: Union[str, bytes],
         prices: List["types.LabeledPrice"],
         provider: str = None,
         provider_data: str = None,
@@ -95,6 +96,9 @@ class SendInvoice:
                 
             protect_content (``bool``, *optional*):
                 Protects the contents of the sent message from forwarding and saving.
+                
+            payload (``str`` | ``bytes``):
+                Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use for your internal processes.
 
             quote_text (``str``, *optional*):
                 Text to quote.
@@ -139,7 +143,7 @@ class SendInvoice:
                         currency=currency,
                         prices=[price.write() for price in prices]
                     ),
-                    payload=f"{(title)}".encode(),
+                    payload=payload.encode() if isinstance(payload, str) else payload,
                     provider=provider,
                     provider_data=raw.types.DataJSON(data=provider_data if provider_data else "{}"),
                     photo=raw.types.InputWebDocument(
@@ -167,7 +171,7 @@ class SendInvoice:
                     raw.types.UpdateNewChannelMessage
                 )
             ):
-                return types.Message._parse(
+                return await types.Message._parse(
                     self,
                     i.message,
                     users={i.id: i for i in r.users},
