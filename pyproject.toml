@@ -1,5 +1,5 @@
 [project]
-name = "pyrofork"
+name = "PyroSky"
 dynamic = ["version"]
 description = "Fork of pyrogram. Elegant, modern and asynchronous Telegram MTProto API framework in Python for users and bots"
 authors = [{ name = "wulan17", email = "mayuri@mayuri.my.id" }]
@@ -39,11 +39,11 @@ path = "pyrogram/__init__.py"
 [tool.hatch.build.hooks.custom]
 
 [project.urls]
-Homepage = "https://github.com/Mayuri-Chan"
-Tracker = "https://github.com/Mayuri-Chan/pyrofork/issues"
+Homepage = "https://github.com/AmineSoukara"
+Tracker = "https://github.com/AmineSoukara/PyroSky/issues"
 Community = "https://t.me/MayuriChan_Chat"
-Source = "https://github.com/Mayuri-Chan/pyrofork"
-Documentation = "https://pyrofork.mayuri.my.id"
+Source = "https://github.com/AmineSoukara/PyroSky"
+Documentation = "https://PyroSky.mayuri.my.id"
 
 [build-system]
 requires = ["hatchling"]
@@ -67,7 +67,7 @@ docs = [
 ]
 
 speedup = [
-    "tgcrypto-pyrofork>=1.2.6",
+    "tgcrypto-PyroSky>=1.2.6",
     "uvloop>=0.19.0"
 ]
 

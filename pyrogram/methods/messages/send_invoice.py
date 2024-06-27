@@ -15,6 +15,7 @@
 #
 #  You should have received a copy of the GNU Lesser General Public License
 #  along with Pyrogram.  If not, see <http://www.gnu.org/licenses/>.
+# 
 
 import logging
 from typing import List, Optional, Union
@@ -210,7 +211,9 @@ class SendInvoice:
             peer=await self.resolve_peer(chat_id),
             media=media,
             silent=disable_notification or None,
-            reply_to=utils.get_reply_to(
+            reply_to = await utils.get_reply_to(
+                client=self,
+                chat_id=chat_id,
                 reply_to_message_id=reply_to_message_id,
                 message_thread_id=message_thread_id
             ),
