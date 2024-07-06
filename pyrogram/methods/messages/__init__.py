@@ -71,7 +71,6 @@ from .send_web_page import SendWebPage
 from .stop_poll import StopPoll
 from .stream_media import StreamMedia
 from .vote_poll import VotePoll
-from .refund_star_payment import RefundStarPayment
 
 class Messages(
     DeleteMessages,
