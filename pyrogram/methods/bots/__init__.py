@@ -37,7 +37,7 @@ from .set_bot_default_privileges import SetBotDefaultPrivileges
 from .set_bot_info import SetBotInfo
 from .set_chat_menu_button import SetChatMenuButton
 from .set_game_score import SetGameScore
-
+from .refund_stars_payment import RefundStarPayment
 
 class Bots(
     AnswerCallbackQuery,
@@ -59,6 +59,7 @@ class Bots(
     GetChatMenuButton,
     AnswerWebAppQuery,
     AnswerPreCheckoutQuery,
-    GetCollectibleItemInfo
+    GetCollectibleItemInfo,
+    RefundStarPayment
 ):
     pass
