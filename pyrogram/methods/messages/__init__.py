@@ -127,6 +127,5 @@ class Messages(
     GetDiscussionRepliesCount,
     StreamMedia,
     GetCustomEmojiStickers,
-    RefundStarPayment
 ):
     pass
