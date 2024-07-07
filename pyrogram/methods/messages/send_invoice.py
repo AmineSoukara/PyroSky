@@ -56,12 +56,7 @@ class SendInvoice:
         protect_content: Optional[bool] = None,
         message_effect_id: Optional[int] = None,
         reply_to_message_id: Optional[int] = None,
-        reply_markup: Optional[Union[
-            "types.InlineKeyboardMarkup",
-            "types.ReplyKeyboardMarkup",
-            "types.ReplyKeyboardRemove",
-            "types.ForceReply"
-        ]] = None,
+        reply_markup: "types.InlineKeyboardMarkup" = None,
         caption: str = "",
         parse_mode: Optional["enums.ParseMode"] = None,
         caption_entities: Optional[List["types.MessageEntity"]] = None
@@ -171,6 +166,22 @@ class SendInvoice:
             :obj:`~pyrogram.types.Message`: On success, the sent invoice message is returned.
 
         """
+        
+        if reply_markup is not None:
+            has_buy_button = False
+            for i in reply_markup.inline_keyboard:
+                for j in i:
+                    if isinstance(j, types.InlineKeyboardButtonBuy):
+                        has_buy_button = True
+            if not has_buy_button:
+                text = "Pay"
+                if currency == "XTR":
+                    prices_total = 0
+                    for price in prices:
+                        prices_total += price.amount
+                    text = f"Pay ⭐️{prices_total}"
+                reply_markup.inline_keyboard.insert(0, [types.InlineKeyboardButtonBuy(text=text)])
+
         media = raw.types.InputMediaInvoice(
             title=title,
             description=description,
@@ -219,7 +230,7 @@ class SendInvoice:
             ),
             random_id=self.rnd_id(),
             noforwards=protect_content,
-            reply_markup=await reply_markup.write(self) if reply_markup else None,
+            reply_markup=await reply_markup.write(self) if reply_markup is not None else None,
             effect=message_effect_id,
             **await utils.parse_text_entities(self, caption, parse_mode, caption_entities)
         )
